@@ -37,7 +37,7 @@ const instance = ngMocks.get(fixture.point, TargetDirective);
 A source file of this test is here:
 [TestAttributeDirective](https://github.com/ike18t/ng-mocks/blob/master/examples/TestAttributeDirective/test.spec.ts).<br>
 Prefix it with `fdescribe` or `fit` on
-[codesandbox.io](https://codesandbox.io/s/github/satanTime/ng-mocks-cs?file=/src/examples/TestAttributeDirective/test.spec.ts)
+[codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/TestAttributeDirective/test.spec.ts)
 to play with.
 
 ```typescript

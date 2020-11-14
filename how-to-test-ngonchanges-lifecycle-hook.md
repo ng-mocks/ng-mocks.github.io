@@ -29,7 +29,7 @@ fixture.detectChanges(); // <- triggers the hook again.
 A source file of this test is here:
 [TestLifecycleHooks](https://github.com/ike18t/ng-mocks/blob/master/examples/TestLifecycleHooks/test.spec.ts).<br>
 Prefix it with `fdescribe` or `fit` on
-[codesandbox.io](https://codesandbox.io/s/github/satanTime/ng-mocks-cs?file=/src/examples/TestLifecycleHooks/test.spec.ts)
+[codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/TestLifecycleHooks/test.spec.ts)
 to play with.
 
 ```typescript

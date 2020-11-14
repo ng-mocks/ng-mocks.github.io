@@ -56,7 +56,7 @@ expect(req.request.headers.get('My-Custom')).toEqual(
 A source file of this test is here:
 [TestHttpInterceptor](https://github.com/ike18t/ng-mocks/blob/master/examples/TestHttpInterceptor/test.spec.ts).<br>
 Prefix it with `fdescribe` or `fit` on
-[codesandbox.io](https://codesandbox.io/s/github/satanTime/ng-mocks-cs?file=/src/examples/TestHttpInterceptor/test.spec.ts)
+[codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/TestHttpInterceptor/test.spec.ts)
 to play with.
 
 ```typescript

@@ -29,7 +29,7 @@ Profit. Now we can assert behavior of the service.
 A source file of this test is here:
 [TestProviderInComponent](https://github.com/ike18t/ng-mocks/blob/master/examples/TestProviderInComponent/test.spec.ts).<br>
 Prefix it with `fdescribe` or `fit` on
-[codesandbox.io](https://codesandbox.io/s/github/satanTime/ng-mocks-cs?file=/src/examples/TestProviderInComponent/test.spec.ts)
+[codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/TestProviderInComponent/test.spec.ts)
 to play with.
 
 {% raw %}

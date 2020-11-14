@@ -8,7 +8,7 @@ If you did not read ["How to test a route"](./how-to-test-a-route.html), please 
 
 To test a guard means that we need to mock everything except the guard and `RouterModule`.
 But, what if we have several guards? If we mocked them they would block routes due to falsy returns of their mocked methods.
-**To skip guards in angular tests `ngMocks` provides `NG_MOCKS_GUARDS` token**, we should pass it into `.exclude`, then all other guards will be
+**To skip guards in angular tests `ng-mocks` provides `NG_MOCKS_GUARDS` token**, we should pass it into `.exclude`, then all other guards will be
 excluded from `TestBed` and we can be sure, that we are **testing only the guard we want**.
 
 ```typescript
@@ -42,7 +42,7 @@ expect(() => ngMocks.find(fixture, LoginComponent)).not.toThrow();
 A source file of this test is here:
 [TestRoutingGuard](https://github.com/ike18t/ng-mocks/blob/master/examples/TestRoutingGuard/test.spec.ts).<br>
 Prefix it with `fdescribe` or `fit` on
-[codesandbox.io](https://codesandbox.io/s/github/satanTime/ng-mocks-cs?file=/src/examples/TestRoutingGuard/test.spec.ts)
+[codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/TestRoutingGuard/test.spec.ts)
 to play with.
 
 ```typescript

@@ -32,7 +32,7 @@ expect(fixture.nativeElement.innerHTML).toEqual('1, 2, 3');
 A source file of this test is here:
 [TestPipe](https://github.com/ike18t/ng-mocks/blob/master/examples/TestPipe/test.spec.ts).<br>
 Prefix it with `fdescribe` or `fit` on
-[codesandbox.io](https://codesandbox.io/s/github/satanTime/ng-mocks-cs?file=/src/examples/TestPipe/test.spec.ts)
+[codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/TestPipe/test.spec.ts)
 to play with.
 
 {% raw %}

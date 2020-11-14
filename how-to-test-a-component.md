@@ -16,7 +16,7 @@ Below you can find an example how to test almost everthing what a component migh
 The source file is here:
 [MAIN](https://github.com/ike18t/ng-mocks/blob/master/examples/MAIN/test.spec.ts).<br>
 Prefix it with `fdescribe` or `fit` on
-[codesandbox.io](https://codesandbox.io/s/github/satanTime/ng-mocks-cs?file=/src/examples/MAIN/test.spec.ts)
+[codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/MAIN/test.spec.ts)
 to play with.
 
 {% raw %}
@@ -106,7 +106,7 @@ describe('MAIN', () => {
   // But, usually, instead of AppHeaderComponent we want to have
   // a mock copy.
 
-  // With ngMocks it can be defined in the next way.
+  // With ng-mocks it can be defined in the next way.
   beforeEach(() => {
     // AppComponent will stay as it is,
     // everything in AppModule will be replaced with their mock copies.

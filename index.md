@@ -4,7 +4,7 @@ The goal of this website is to demonstrate **comprehensive examples of angular u
 covering almost all possible cases.
 
 Should you not find an example you are interested in?
-Just [contact us](https://www.npmjs.com/package/ng-mocks#find-an-issue-or-have-a-question-or-a-request).
+Simply [contact us](https://www.npmjs.com/package/ng-mocks#find-an-issue-or-have-a-question-or-a-request).
 
 - [How to test a component](./how-to-test-a-component.html)
 - [How to test a provider of a component](how-to-test-a-provider-of-a-component.md)

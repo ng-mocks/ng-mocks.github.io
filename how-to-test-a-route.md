@@ -6,7 +6,7 @@ description: How to test a route in Angular application
 
 Testing a route means that we want to assert that a specific page renders a specific component.
 
-With `ngMocks` you can be confident, that a route exists and all its dependencies are present in the related module,
+With `ng-mocks` you can be confident, that a route exists and all its dependencies are present in the related module,
 otherwise tests will fail.
 
 However, to test that, we need to configure `TestBed` a bit differently: it is fine to mock all components and declarations,
@@ -100,7 +100,7 @@ expect(() => ngMocks.find(fixture, Target1Component)).not.toThrow();
 A source file of these tests is here:
 [TestRoute](https://github.com/ike18t/ng-mocks/blob/master/examples/TestRoute/test.spec.ts).<br>
 Prefix it with `fdescribe` or `fit` on
-[codesandbox.io](https://codesandbox.io/s/github/satanTime/ng-mocks-cs?file=/src/examples/TestRoute/test.spec.ts)
+[codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/TestRoute/test.spec.ts)
 to play with.
 
 ```typescript

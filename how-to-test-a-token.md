@@ -7,8 +7,8 @@ description: How to test a token in Angular application
 For proper testing of tokens in Angular application, we need extra declarations compare to their usage in the application.
 
 Because a token might have a factory function, it is not always necessary to list the token in providers for successful execution of its application.
-Unfortunately, for testing it is not like that, and in this case `ngMocks` cannot detect the token.
-Please make sure, that the token and its dependencies are listed in providers of a related module, then `ngMocks` can mock them properly.
+Unfortunately, for testing it is not like that, and in this case `ng-mocks` cannot detect the token.
+Please make sure, that the token and its dependencies are listed in providers of a related module, then `ng-mocks` can mock them properly.
 
 Configuration of `TestBed` should be done via [`MockBuilder`](https://www.npmjs.com/package/ng-mocks#mockbuilder) where its first parameter is the token we want to test, and
 the second parameter is its module.
@@ -38,7 +38,7 @@ expect(token).toEqual(jasmine.any(ServiceExisting));
 A source file of this test is here:
 [TestToken](https://github.com/ike18t/ng-mocks/blob/master/examples/TestToken/test.spec.ts).<br>
 Prefix it with `fdescribe` or `fit` on
-[codesandbox.io](https://codesandbox.io/s/github/satanTime/ng-mocks-cs?file=/src/examples/TestToken/test.spec.ts)
+[codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/TestToken/test.spec.ts)
 to play with.
 
 ```typescript

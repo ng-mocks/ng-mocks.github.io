@@ -30,9 +30,9 @@ expect(fixture.nativeElement.innerHTML).toContain('1: world');
 ```
 
 ```typescript
-fixture.componentInstance.values = ['ngMocks'];
+fixture.componentInstance.values = ['ng-mocks'];
 fixture.detectChanges();
-expect(fixture.nativeElement.innerHTML).toContain('0: ngMocks');
+expect(fixture.nativeElement.innerHTML).toContain('0: ng-mocks');
 expect(fixture.nativeElement.innerHTML).not.toContain('0: hello');
 expect(fixture.nativeElement.innerHTML).not.toContain('1: world');
 ```
@@ -42,7 +42,7 @@ expect(fixture.nativeElement.innerHTML).not.toContain('1: world');
 A source file of this test is here:
 [TestStructuralDirectiveWithContext](https://github.com/ike18t/ng-mocks/blob/master/examples/TestStructuralDirectiveWithContext/test.spec.ts).<br>
 Prefix it with `fdescribe` or `fit` on
-[codesandbox.io](https://codesandbox.io/s/github/satanTime/ng-mocks-cs?file=/src/examples/TestStructuralDirectiveWithContext/test.spec.ts)
+[codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/TestStructuralDirectiveWithContext/test.spec.ts)
 to play with.
 
 {% raw %}
@@ -103,9 +103,9 @@ describe('TestStructuralDirectiveWithContext', () => {
 
     // Let's change the 'values' and assert that the new render
     // has done everything as expected.
-    fixture.componentInstance.values = ['ngMocks'];
+    fixture.componentInstance.values = ['ng-mocks'];
     fixture.detectChanges();
-    expect(fixture.nativeElement.innerHTML).toContain('0: ngMocks');
+    expect(fixture.nativeElement.innerHTML).toContain('0: ng-mocks');
     expect(fixture.nativeElement.innerHTML).not.toContain('0: hello');
     expect(fixture.nativeElement.innerHTML).not.toContain('1: world');
   });
