@@ -75,7 +75,7 @@ to play with.
 A source file of a test with `useValue` is here:
 [TestProviderWithUseValue](https://github.com/ike18t/ng-mocks/blob/master/examples/TestProviderWithUseValue/test.spec.ts).<br>
 Prefix it with `fdescribe` or `fit` on
-[codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/examples/TestProviderWithUseValue/test.spec.ts)
+[codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/TestProviderWithUseValue/test.spec.ts)
 to play with.
 
 A source file of a test with `useExisting` is here:
@@ -87,7 +87,7 @@ to play with.
 A source file of a test with `useFactory` is here:
 [TestProviderWithUseFactory](https://github.com/ike18t/ng-mocks/blob/master/examples/TestProviderWithUseFactory/test.spec.ts).<br>
 Prefix it with `fdescribe` or `fit` on
-[codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/examples/TestProviderWithUseFactory/test.spec.ts)
+[codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/TestProviderWithUseFactory/test.spec.ts)
 to play with.
 
 ```typescript
