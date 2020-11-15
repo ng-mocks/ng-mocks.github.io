@@ -22,3 +22,9 @@ Simply [contact us](https://www.npmjs.com/package/ng-mocks#find-an-issue-or-have
 - [How to test a routing resolver](./how-to-test-a-routing-resolver.html)
 - [How to test a http request](./how-to-test-a-http-request.html)
 - [How to test a http interceptor](./how-to-test-a-http-interceptor.html)
+
+* [How to configure CI to execute Angular tests automatically](http://satantime.github.io/puppeteer-node/)
+
+- [How to fix TypeError: Cannot read property 'subscribe' of undefined](./how-to-fix-typeerror-cannot-read-property-subscribe-of-undefined.html)
+- [How to fix Error: Type is part of the declarations of 2 modules](./how-to-fix-error-type-is-part-of-the-declarations-of-2-modules.html)
+- [How to fix Error: Directive has no selector, please add it!](./how-to-fix-error-directive-has-no-selector-please-add-it.html)
