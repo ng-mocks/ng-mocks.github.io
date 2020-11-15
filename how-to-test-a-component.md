@@ -39,19 +39,15 @@ import { MockBuilder, MockRender, ngMocks } from 'ng-mocks';
 @Component({
   selector: 'app-root',
   template: `
-      <app-header
-              [showLogo]="true"
-              [title]="title"
-              (logo)="logoClick.emit()"
-      >
-          <ng-template #menu>
-              <ul>
-                  <li><a [routerLink]="['/home']">Home</a></li>
-                  <li><a [routerLink]="['/about']">Home</a></li>
-              </ul>
-          </ng-template>
-      </app-header>
-      <router-outlet></router-outlet>
+    <app-header [showLogo]="true" [title]="title" (logo)="logoClick.emit()">
+      <ng-template #menu>
+        <ul>
+          <li><a [routerLink]="['/home']">Home</a></li>
+          <li><a [routerLink]="['/about']">Home</a></li>
+        </ul>
+      </ng-template>
+    </app-header>
+    <router-outlet></router-outlet>
   `,
 })
 class AppComponent {
@@ -65,11 +61,11 @@ class AppComponent {
 @Component({
   selector: 'app-header',
   template: `
-      <a (click)="logo.emit()"
-      ><img src="assets/logo.png" *ngIf="showLogo"
-      /></a>
-      {{ title }}
-      <template [ngTemplateOutlet]="menu"></template>
+    <a (click)="logo.emit()">
+      <img src="assets/logo.png" *ngIf="showLogo" />
+    </a>
+    {{ title }}
+    <template [ngTemplateOutlet]="menu"></template>
   `,
 })
 class AppHeaderComponent {
@@ -167,10 +163,7 @@ describe('MAIN', () => {
     //   By.directive(AppHeaderComponent)
     // );
     // but typesafe and fails if nothing has been found.
-    const header = ngMocks.find(
-      fixture.debugElement,
-      AppHeaderComponent
-    );
+    const header = ngMocks.find(AppHeaderComponent);
 
     // Asserting how AppComponent uses AppHeaderComponent.
     expect(header.componentInstance.showLogo).toBe(true);
@@ -179,9 +172,7 @@ describe('MAIN', () => {
     // Checking that AppComponents updates AppHeaderComponent.
     fixture.componentInstance.title = 'Updated Application';
     fixture.detectChanges();
-    expect(header.componentInstance.title).toBe(
-      'Updated Application'
-    );
+    expect(header.componentInstance.title).toBe('Updated Application');
 
     // Checking that AppComponent listens on outputs of
     // AppHeaderComponent.
