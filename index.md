@@ -28,3 +28,4 @@ Simply [contact us](https://www.npmjs.com/package/ng-mocks#find-an-issue-or-have
 - [How to fix TypeError: Cannot read property 'subscribe' of undefined](./how-to-fix-typeerror-cannot-read-property-subscribe-of-undefined.html)
 - [How to fix Error: Type is part of the declarations of 2 modules](./how-to-fix-error-type-is-part-of-the-declarations-of-2-modules.html)
 - [How to fix Error: Directive has no selector, please add it!](./how-to-fix-error-directive-has-no-selector-please-add-it.html)
+- [How to fix Template parse errors: \<component\> is not a known element](./how-to-fix-template-parse-errors-component-is-not-a-known-element.html)
