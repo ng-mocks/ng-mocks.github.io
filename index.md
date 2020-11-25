@@ -25,7 +25,7 @@ Simply [contact us](https://www.npmjs.com/package/ng-mocks#find-an-issue-or-have
 
 * [How to configure CI to execute Angular tests automatically](http://satantime.github.io/puppeteer-node/)
 
-- [How to fix TypeError: Cannot read property 'subscribe' of undefined](./how-to-fix-typeerror-cannot-read-property-subscribe-of-undefined.html)
-- [How to fix Error: Type is part of the declarations of 2 modules](./how-to-fix-error-type-is-part-of-the-declarations-of-2-modules.html)
-- [How to fix Error: Directive has no selector, please add it!](./how-to-fix-error-directive-has-no-selector-please-add-it.html)
-- [How to fix Template parse errors: \<component\> is not a known element](./how-to-fix-template-parse-errors-component-is-not-a-known-element.html)
+- [How to fix TypeError: Cannot read property 'subscribe' of undefined](https://www.npmjs.com/package/ng-mocks#how-to-fix-typeerror-cannot-read-property-subscribe-of-undefined)
+- [How to fix Error: Type is part of the declarations of 2 modules](https://www.npmjs.com/package/ng-mocks#how-to-fix-error-type-is-part-of-the-declarations-of-2-modules)
+- [How to fix Error: Directive has no selector, please add it!](https://www.npmjs.com/package/ng-mocks#how-to-fix-error-directive-has-no-selector-please-add-it)
+- [How to fix Template parse errors: \<component\> is not a known element](https://www.npmjs.com/package/ng-mocks#how-to-fix-template-parse-errors-component-is-not-a-known-element)
