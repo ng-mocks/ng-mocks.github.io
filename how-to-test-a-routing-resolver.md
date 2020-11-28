@@ -76,7 +76,13 @@ to play with.
 import { Location } from '@angular/common';
 import { Component, Injectable, NgModule } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { ActivatedRoute, Resolve, Router, RouterModule, RouterOutlet } from '@angular/router';
+import {
+  ActivatedRoute,
+  Resolve,
+  Router,
+  RouterModule,
+  RouterOutlet,
+} from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MockBuilder, MockRender, ngMocks } from 'ng-mocks';
 import { combineLatest, from, Observable, of } from 'rxjs';
@@ -87,7 +93,7 @@ import { map } from 'rxjs/operators';
 class DataService {
   protected flag = true;
 
-  data(): Observable<boolean> {
+  public data(): Observable<boolean> {
     return from([this.flag]);
   }
 }
@@ -95,14 +101,12 @@ class DataService {
 // A resolver we want to test.
 @Injectable()
 class DataResolver implements Resolve<{ flag: boolean }> {
-  protected service: DataService;
+  public constructor(protected service: DataService) {}
 
-  constructor(service: DataService) {
-    this.service = service;
-  }
-
-  resolve() {
-    return combineLatest([this.service.data()]).pipe(map(([flag]) => ({ flag })));
+  public resolve() {
+    return combineLatest([this.service.data()]).pipe(
+      map(([flag]) => ({ flag })),
+    );
   }
 }
 
@@ -111,7 +115,7 @@ class DataResolver implements Resolve<{ flag: boolean }> {
 class MockResolver implements Resolve<{ mock: boolean }> {
   protected mock = true;
 
-  resolve() {
+  public resolve() {
     return of({ mock: this.mock });
   }
 }
@@ -153,7 +157,11 @@ describe('TestRoutingResolver', () => {
   // need to keep RouterModule to have its routes, and to
   // add RouterTestingModule.withRoutes([]), yes yes, with empty
   // routes to have tools for testing.
-  beforeEach(() => MockBuilder(DataResolver, TargetModule).keep(RouterModule).keep(RouterTestingModule.withRoutes([])));
+  beforeEach(() => {
+    return MockBuilder(DataResolver, TargetModule)
+      .keep(RouterModule)
+      .keep(RouterTestingModule.withRoutes([]));
+  });
 
   // It is important to run routing tests in fakeAsync.
   it('provides data to on the route', fakeAsync(() => {
@@ -179,7 +187,7 @@ describe('TestRoutingResolver', () => {
     expect(location.path()).toEqual('/target');
 
     // Let's extract ActivatedRoute of the current component.
-    const el = ngMocks.find(fixture, TargetComponent);
+    const el = ngMocks.find(TargetComponent);
     const route: ActivatedRoute = el.injector.get(ActivatedRoute);
 
     // Now we can assert that it has expected data.
@@ -188,7 +196,7 @@ describe('TestRoutingResolver', () => {
         data: {
           flag: false,
         },
-      })
+      }),
     );
   }));
 });

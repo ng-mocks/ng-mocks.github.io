@@ -58,7 +58,12 @@ Prefix it with `fdescribe` or `fit` on
 to play with.
 
 ```typescript
-import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+import {
+  Directive,
+  Input,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
 import { MockBuilder, MockRender } from 'ng-mocks';
 
 // This directive is the same as `ngIf`,
@@ -67,15 +72,12 @@ import { MockBuilder, MockRender } from 'ng-mocks';
   selector: '[target]',
 })
 class TargetDirective {
-  protected templateRef: TemplateRef<any>;
-  protected viewContainerRef: ViewContainerRef;
+  public constructor(
+    protected templateRef: TemplateRef<any>,
+    protected viewContainerRef: ViewContainerRef,
+  ) {}
 
-  constructor(templateRef: TemplateRef<any>, viewContainerRef: ViewContainerRef) {
-    this.templateRef = templateRef;
-    this.viewContainerRef = viewContainerRef;
-  }
-
-  @Input() set target(value: any) {
+  @Input() public set target(value: any) {
     if (value) {
       this.viewContainerRef.createEmbeddedView(this.templateRef);
     } else {
@@ -88,6 +90,7 @@ describe('TestStructuralDirective', () => {
   // Because we want to test the directive, we pass it as the first
   // parameter of MockBuilder. We can omit the second parameter,
   // because there are no dependencies.
+  // Do not forget to return the promise of MockBuilder.
   beforeEach(() => MockBuilder(TargetDirective));
 
   it('hides and renders its content', () => {
@@ -99,7 +102,7 @@ describe('TestStructuralDirective', () => {
     `,
       {
         value: false,
-      }
+      },
     );
 
     // Because the value is false the "content" should not be

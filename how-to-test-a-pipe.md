@@ -46,7 +46,7 @@ import { MockBuilder, MockRender, ngMocks } from 'ng-mocks';
   name: 'target',
 })
 class TargetPipe implements PipeTransform {
-  transform(value: string[], asc = true): string {
+  public transform(value: string[], asc = true): string {
     let result = [...(value || [])].sort();
     if (!asc) {
       result = result.reverse();
@@ -62,6 +62,7 @@ describe('TestPipe', () => {
   // Because we want to test the pipe, we pass it as the first
   // parameter of MockBuilder. We can omit the second parameter,
   // because there are no dependencies.
+  // Do not forget to return the promise of MockBuilder.
   beforeEach(() => MockBuilder(TargetPipe));
 
   it('sorts strings', () => {

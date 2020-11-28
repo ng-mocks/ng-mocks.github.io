@@ -61,15 +61,18 @@ to play with.
 
 ```typescript
 import {
-  HTTP_INTERCEPTORS,
   HttpClient,
   HttpClientModule,
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
+  HTTP_INTERCEPTORS,
 } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { Injectable, NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MockBuilder, NG_MOCKS_INTERCEPTORS } from 'ng-mocks';
@@ -80,13 +83,16 @@ import { Observable } from 'rxjs';
 class TargetInterceptor implements HttpInterceptor {
   protected value = 'HttpInterceptor';
 
-  public intercept(request: HttpRequest<void>, next: HttpHandler): Observable<HttpEvent<void>> {
+  public intercept(
+    request: HttpRequest<void>,
+    next: HttpHandler,
+  ): Observable<HttpEvent<void>> {
     return next.handle(
       request.clone({
         setHeaders: {
           'My-Custom': this.value,
         },
-      })
+      }),
     );
   }
 }
@@ -96,13 +102,16 @@ class TargetInterceptor implements HttpInterceptor {
 class MockInterceptor implements HttpInterceptor {
   protected value = 'Ignore';
 
-  public intercept(request: HttpRequest<void>, next: HttpHandler): Observable<HttpEvent<void>> {
+  public intercept(
+    request: HttpRequest<void>,
+    next: HttpHandler,
+  ): Observable<HttpEvent<void>> {
     return next.handle(
       request.clone({
         setHeaders: {
           'My-Mock': this.value,
         },
-      })
+      }),
     );
   }
 }
@@ -133,16 +142,18 @@ describe('TestHttpInterceptor', () => {
   // we need to pass its module as the second parameter. Also we
   // should to pass HTTP_INTERCEPTORS into `.mock` and replace
   // HttpClientModule with HttpClientTestingModule.
-  beforeEach(() =>
-    MockBuilder(TargetInterceptor, TargetModule)
+  beforeEach(() => {
+    return MockBuilder(TargetInterceptor, TargetModule)
       .exclude(NG_MOCKS_INTERCEPTORS)
       .keep(HTTP_INTERCEPTORS)
-      .replace(HttpClientModule, HttpClientTestingModule)
-  );
+      .replace(HttpClientModule, HttpClientTestingModule);
+  });
 
   it('triggers interceptor', () => {
     const client: HttpClient = TestBed.get(HttpClient);
-    const httpMock: HttpTestingController = TestBed.get(HttpTestingController);
+    const httpMock: HttpTestingController = TestBed.get(
+      HttpTestingController,
+    );
 
     // Let's do a simply request.
     client.get('/target').subscribe();
@@ -152,7 +163,9 @@ describe('TestHttpInterceptor', () => {
     req.flush('');
     httpMock.verify();
 
-    expect(req.request.headers.get('My-Custom')).toEqual('HttpInterceptor');
+    expect(req.request.headers.get('My-Custom')).toEqual(
+      'HttpInterceptor',
+    );
   });
 });
 ```

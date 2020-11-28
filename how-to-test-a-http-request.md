@@ -52,7 +52,10 @@ to play with.
 
 ```typescript
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { Injectable, NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MockBuilder } from 'ng-mocks';
@@ -61,13 +64,9 @@ import { Observable } from 'rxjs';
 // A service that does http requests.
 @Injectable()
 class TargetService {
-  protected http: HttpClient;
+  public constructor(protected http: HttpClient) {}
 
-  constructor(http: HttpClient) {
-    this.http = http;
-  }
-
-  fetch(): Observable<boolean[]> {
+  public fetch(): Observable<boolean[]> {
     return this.http.get<boolean[]>('/data');
   }
 }
@@ -85,12 +84,19 @@ describe('TestHttpRequest', () => {
   // initialization, we need to pass its module as the second
   // parameter. And, the last but not the least, we need to replace
   // HttpClientModule with HttpClientTestingModule.
-  beforeEach(() => MockBuilder(TargetService, TargetModule).replace(HttpClientModule, HttpClientTestingModule));
+  beforeEach(() => {
+    return MockBuilder(TargetService, TargetModule).replace(
+      HttpClientModule,
+      HttpClientTestingModule,
+    );
+  });
 
   it('sends a request', () => {
     // Let's extract the service and http controller for testing.
     const service: TargetService = TestBed.get(TargetService);
-    const httpMock: HttpTestingController = TestBed.get(HttpTestingController);
+    const httpMock: HttpTestingController = TestBed.get(
+      HttpTestingController,
+    );
 
     // A simple subscription to check what the service returns.
     let actual: any;

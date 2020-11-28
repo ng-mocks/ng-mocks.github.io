@@ -47,11 +47,25 @@ to play with.
 
 ```typescript
 import { Location } from '@angular/common';
-import { Component, Injectable, NgModule, VERSION } from '@angular/core';
+import {
+  Component,
+  Injectable,
+  NgModule,
+} from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { CanActivate, Router, RouterModule, RouterOutlet } from '@angular/router';
+import {
+  CanActivate,
+  Router,
+  RouterModule,
+  RouterOutlet,
+} from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MockBuilder, MockRender, NG_MOCKS_GUARDS, ngMocks } from 'ng-mocks';
+import {
+  MockBuilder,
+  MockRender,
+  ngMocks,
+  NG_MOCKS_GUARDS,
+} from 'ng-mocks';
 import { from, Observable } from 'rxjs';
 import { mapTo } from 'rxjs/operators';
 
@@ -65,15 +79,12 @@ class LoginService {
 // A guard we want to test.
 @Injectable()
 class LoginGuard implements CanActivate {
-  protected router: Router;
-  protected service: LoginService;
+  public constructor(
+    protected router: Router,
+    protected service: LoginService,
+  ) {}
 
-  constructor(router: Router, service: LoginService) {
-    this.router = router;
-    this.service = service;
-  }
-
-  canActivate(): boolean | Observable<boolean> {
+  public canActivate(): boolean | Observable<boolean> {
     if (this.service.isLoggedIn) {
       return true;
     }
@@ -88,7 +99,7 @@ class LoginGuard implements CanActivate {
 class MockGuard implements CanActivate {
   protected readonly allow = true;
 
-  canActivate(): boolean {
+  public canActivate(): boolean {
     return this.allow;
   }
 }
@@ -149,12 +160,12 @@ describe('TestRoutingGuard', () => {
   // RouterTestingModule.withRoutes([]), yes yes, with empty routes
   // to have tools for testing. And the last thing is to exclude
   // `NG_MOCKS_GUARDS` to remove all other guards.
-  beforeEach(() =>
-    MockBuilder(LoginGuard, TargetModule)
+  beforeEach(() => {
+    return MockBuilder(LoginGuard, TargetModule)
       .exclude(NG_MOCKS_GUARDS)
       .keep(RouterModule)
-      .keep(RouterTestingModule.withRoutes([]))
-  );
+      .keep(RouterTestingModule.withRoutes([]));
+  });
 
   // It is important to run routing tests in fakeAsync.
   it('redirects to login', fakeAsync(() => {
@@ -171,7 +182,7 @@ describe('TestRoutingGuard', () => {
     // Because by default we are not logged, the guard should
     // redirect us /login page.
     expect(location.path()).toEqual('/login');
-    expect(() => ngMocks.find(fixture, LoginComponent)).not.toThrow();
+    expect(() => ngMocks.find(LoginComponent)).not.toThrow();
   }));
 
   it('loads dashboard', fakeAsync(() => {
@@ -192,7 +203,7 @@ describe('TestRoutingGuard', () => {
     // Because now we are logged in, the guard should let us land on
     // the dashboard.
     expect(location.path()).toEqual('/');
-    expect(() => ngMocks.find(fixture, DashboardComponent)).not.toThrow();
+    expect(() => ngMocks.find(DashboardComponent)).not.toThrow();
   }));
 });
 ```

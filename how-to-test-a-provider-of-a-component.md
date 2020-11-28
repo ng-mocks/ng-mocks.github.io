@@ -50,11 +50,7 @@ class TargetService {
   template: `{{ service.value }}`,
 })
 class TargetComponent {
-  public readonly service: TargetService;
-
-  constructor(service: TargetService) {
-    this.service = service;
-  }
+  public constructor(public readonly service: TargetService) {}
 }
 
 describe('TestProviderInComponent', () => {
@@ -62,6 +58,7 @@ describe('TestProviderInComponent', () => {
   // parameter of MockBuilder.
   // Because we do not care about TargetComponent, we pass it as
   // the second parameter for being replaced with a mock copy.
+  // Do not forget to return the promise of MockBuilder.
   beforeEach(() => MockBuilder(TargetService, TargetComponent));
 
   it('has access to the service via a component', () => {
