@@ -90,6 +90,7 @@ Prefix it with `fdescribe` or `fit` on
 [codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/TestProviderWithUseFactory/test.spec.ts)
 to play with.
 
+{% raw %}
 ```typescript
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
@@ -117,5 +118,6 @@ describe('TestProvider', () => {
   });
 });
 ```
+{% endraw %}
 
 [back to the homepage](./)

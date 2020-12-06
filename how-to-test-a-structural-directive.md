@@ -57,6 +57,7 @@ Prefix it with `fdescribe` or `fit` on
 [codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/TestStructuralDirective/test.spec.ts)
 to play with.
 
+{% raw %}
 ```typescript
 import {
   Directive,
@@ -123,5 +124,6 @@ describe('TestStructuralDirective', () => {
   });
 });
 ```
+{% endraw %}
 
 [back to the homepage](./)

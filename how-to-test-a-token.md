@@ -41,6 +41,7 @@ Prefix it with `fdescribe` or `fit` on
 [codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/TestToken/test.spec.ts)
 to play with.
 
+{% raw %}
 ```typescript
 import { Injectable, InjectionToken, NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
@@ -133,5 +134,6 @@ describe('TestToken', () => {
   });
 });
 ```
+{% endraw %}
 
 [back to the homepage](./)

@@ -45,6 +45,7 @@ Prefix it with `fdescribe` or `fit` on
 [codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/TestRoutingGuard/test.spec.ts)
 to play with.
 
+{% raw %}
 ```typescript
 import { Location } from '@angular/common';
 import {
@@ -207,5 +208,6 @@ describe('TestRoutingGuard', () => {
   }));
 });
 ```
+{% endraw %}
 
 [back to the homepage](./)

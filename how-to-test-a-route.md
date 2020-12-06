@@ -103,6 +103,7 @@ Prefix it with `fdescribe` or `fit` on
 [codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/TestRoute/test.spec.ts)
 to play with.
 
+{% raw %}
 ```typescript
 import { Location } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
@@ -273,5 +274,6 @@ describe('TestRoute:Component', () => {
   }));
 });
 ```
+{% endraw %}
 
 [back to the homepage](./)

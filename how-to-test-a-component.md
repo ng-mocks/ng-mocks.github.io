@@ -4,7 +4,7 @@ description: How to test a component in Angular application
 
 # How to test a component in Angular application
 
-Below you can find an example how to test almost everthing what a component might have:
+Below you can find an example how to test almost everything what a component might have:
 
 * `@Input`
 * `@Output`
@@ -14,9 +14,9 @@ Below you can find an example how to test almost everthing what a component migh
 ---
 
 The source file is here:
-[MAIN](https://github.com/ike18t/ng-mocks/blob/master/examples/MAIN/test.spec.ts).<br>
+[MAIN](https://github.com/ike18t/ng-mocks/blob/master/examples/main/test.spec.ts).<br>
 Prefix it with `fdescribe` or `fit` on
-[codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/MAIN/test.spec.ts)
+[codesandbox.io](https://codesandbox.io/s/github/ng-mocks/examples?file=/src/examples/main/test.spec.ts)
 to play with.
 
 {% raw %}
@@ -30,10 +30,23 @@ import {
   Input,
   NgModule,
   Output,
+  Pipe,
+  PipeTransform,
   TemplateRef,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MockBuilder, MockRender, ngMocks } from 'ng-mocks';
+
+@Pipe({
+  name: 'translate',
+})
+class TranslatePipe implements PipeTransform {
+  public transform(value: string): string {
+    // Just for the test purpose
+    // we don't use any translation services.
+    return `translated:${value}`;
+  }
+}
 
 // Our main component that we want to test.
 @Component({
@@ -46,8 +59,12 @@ import { MockBuilder, MockRender, ngMocks } from 'ng-mocks';
     >
       <ng-template #menu>
         <ul>
-          <li><a [routerLink]="['/home']">Home</a></li>
-          <li><a [routerLink]="['/about']">Home</a></li>
+          <li>
+            <a [routerLink]="['/home']">{{ 'Home' | translate }}</a>
+          </li>
+          <li>
+            <a [routerLink]="['/about']">{{ 'About' | translate }}</a>
+          </li>
         </ul>
       </ng-template>
     </app-header>
@@ -80,35 +97,39 @@ class AppHeaderComponent {
 
 // The module where our components are declared.
 @NgModule({
-  declarations: [AppComponent, AppHeaderComponent],
+  declarations: [AppComponent, AppHeaderComponent, TranslatePipe],
   imports: [CommonModule, RouterModule.forRoot([])],
 })
 class AppModule {}
 
-describe('MAIN', () => {
-  // Usually we would have something like that.
+describe('main', () => {
+  // Usually, we would have something like that.
   // beforeEach(() => {
   //   TestBed.configureTestingModule({
   //     imports: [
   //       CommonModule,
   //       RouterModule.forRoot([]),
   //     ],
-  //     declarations: [AppComponent, AppHeaderComponent],
+  //     declarations: [
+  //       AppComponent,
+  //       AppHeaderComponent,
+  //       TranslatePipe,
+  //     ],
   //   });
   //
   //   fixture = TestBed.createComponent(AppComponent);
   //   fixture.detectChanges();
   // });
-  // But, usually, instead of AppHeaderComponent we want to have
-  // a mock copy.
+  // But, usually, instead of AppHeaderComponent and TranslatePipe
+  // we want to have mocks.
 
   // With ng-mocks it can be defined in the next way.
   beforeEach(() => {
     // AppComponent will stay as it is,
-    // everything in AppModule will be replaced with their mock copies.
+    // everything in AppModule will be replaced with their mocks.
     return (
       MockBuilder(AppComponent, AppModule)
-        // Adding a special config how to how to create
+        // Adding a special config how to create
         // a mock AppHeaderComponent.
         .mock(AppHeaderComponent, {
           render: {
@@ -117,6 +138,8 @@ describe('MAIN', () => {
             menu: true,
           },
         })
+        // a fake transform handler.
+        .mock(TranslatePipe, v => `fake:${v}`)
     );
     // the same as
     // TestBed.configureTestingModule({
@@ -127,6 +150,7 @@ describe('MAIN', () => {
     //   declarations: [
     //     AppComponent, // <- keeping it as it is.
     //     MockComponent(AppHeaderComponent),
+    //     MockPipe(TranslatePipe, v => `fake:${v}`),
     //   ],
     // });
     // return testBed.compileComponents();
@@ -137,10 +161,13 @@ describe('MAIN', () => {
     //   AppModule,
     // ));
     // return testBed.compileComponents();
+    // But in this case TranslatePipe will return undefined,
+    // if we don't customize it via MockInstance or defaultMock.
   });
 
   it('asserts behavior of AppComponent', () => {
-    const logoClickSpy = jasmine.createSpy();
+    const logoClickSpy =
+      typeof jest === 'undefined' ? jasmine.createSpy() : jest.fn();
     // in case of jest
     // const logoClickSpy = jest.fn();
 
@@ -162,10 +189,10 @@ describe('MAIN', () => {
     // The same as fixture.debugElement.query(
     //   By.directive(AppHeaderComponent)
     // );
-    // but typesafe and fails if nothing has been found.
+    // but type safe and fails if nothing has been found.
     const header = ngMocks.find(AppHeaderComponent);
 
-    // Asserting how AppComponent uses AppHeaderComponent.
+    // Verifies how AppComponent uses AppHeaderComponent.
     expect(header.componentInstance.showLogo).toBe(true);
     expect(header.componentInstance.title).toBe('Fake Application');
 
@@ -182,15 +209,20 @@ describe('MAIN', () => {
     header.componentInstance.logo.emit();
     expect(logoClickSpy).toHaveBeenCalled();
 
-    // Asserting that AppComponent passes the right menu into
+    // Verifies that AppComponent passes the right menu into
     // AppHeaderComponent.
     const links = ngMocks.findAll(header, 'a');
     expect(links.length).toBe(2);
+    const [link1, link2] = links;
 
+    // Checking that TranslatePipe has been used.
+    expect(link1.nativeElement.innerHTML).toEqual('fake:Home');
     // An easy way to get a value of an input. The same as
     // links[0].injector.get(RouterLinkWithHref).routerLink
-    expect(ngMocks.input(links[0], 'routerLink')).toEqual(['/home']);
-    expect(ngMocks.input(links[1], 'routerLink')).toEqual(['/about']);
+    expect(ngMocks.input(link1, 'routerLink')).toEqual(['/home']);
+
+    expect(link2.nativeElement.innerHTML).toEqual('fake:About');
+    expect(ngMocks.input(link2, 'routerLink')).toEqual(['/about']);
   });
 });
 ```
